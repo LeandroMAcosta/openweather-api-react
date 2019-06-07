@@ -61,7 +61,7 @@ function Slide(props) {
       <Tabs value={value} indicatorColor="primary" textColor="primary" onChange={handleChange}>
         <Tab className="tab" label="Current" />
         <Tab className="tab" label="Forecast" />
-        <Tab className="tab" label="UVI" disabled />
+        <Tab className="tab" label="UVI" />
       </Tabs>
       <TabContent className="tabContent">
         {content}
