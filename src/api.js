@@ -23,6 +23,12 @@ class Api {
     const fetchUrl = `${this.url}/find?q=${city}&APIKEY=${this.apiKey}&lang=${lang}`;
     return fetch(fetchUrl);
   }
+
+  getUvi(coord) {
+    const fetchUrl = `${this.url}/uvi?appid=${this.apiKey}&lat=${coord.lat}&lon=${coord.lon}&lang=${lang}&units=metric`;
+    return fetch(fetchUrl);
+  }
+  // uvi?appid={appid}&lat={lat}&lon={lon} 
 }
 
 export default Api;

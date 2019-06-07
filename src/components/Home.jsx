@@ -16,6 +16,8 @@ class Home extends React.Component {
     this.state = {
       weather: {},
       forecast: {},
+      uvi: {},
+      coord: {},
       loading: false,
       checked: false,
       unMount: false,
@@ -23,6 +25,7 @@ class Home extends React.Component {
     this.updateCity = this.updateCity.bind(this);
     this.shiftLoading = this.shiftLoading.bind(this);
     this.handleChange = this.handleChange.bind(this);
+    this.updateUvi = this.updateUvi.bind(this);
   }
 
   shiftLoading() {
@@ -37,6 +40,22 @@ class Home extends React.Component {
       city: newCity,
     });
     this.updateWeather(newCity);
+  }
+
+  updateCoord() {
+    this.updateUvi();
+  }
+
+  async updateUvi() {
+    const api = new Api();
+    const responseUvi = await api.getUvi(this.state.coord);
+    const jsonUvi = await responseUvi.json();
+
+    this.setState({
+      uvi: jsonUvi,
+    });
+    console.log(jsonUvi);
+    
   }
 
   async updateWeather(newCity) {
@@ -66,6 +85,7 @@ class Home extends React.Component {
     this.setState({
       weather: jsonWeather,
       forecast: jsonForecast,
+      cord: jsonWeather.coord,
     });
 
     this.shiftLoading();
@@ -95,7 +115,7 @@ class Home extends React.Component {
         && (
         <Fade in={checked}>
           <Card className="Home">
-            <Slide {...this.state} />
+            <Slide {...this.state} updateCoord={this.updateCoord} />
           </Card>
         </Fade>
         )
