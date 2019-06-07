@@ -6,6 +6,7 @@ import Box from '@material-ui/core/Box';
 import ContentLoader from 'react-content-loader';
 import CurrentContainer from './CurrentContainer';
 import ForecastContainer from './ForecastContainer';
+import UviContainer from './UviContainer';
 import { types } from '../settings';
 
 function TabContent({ children }) {
@@ -35,7 +36,7 @@ const Loader = () => (
 
 function Slide(props) {
   const [value, setValue] = React.useState(0);
-  const { loading, weather, forecast } = props;
+  const { loading, weather, forecast, uvi } = props;
   function handleChange(event, newValue) {
     setValue(newValue);
   }
@@ -53,7 +54,7 @@ function Slide(props) {
   } else if (value === types.FORECAST) {
     content = <ForecastContainer forecast={forecast} />;
   } else if (value === types.UVI) {
-    content = <div>UVI IN PROCESS</div>;
+    content = <UviContainer uvi={uvi} />;
   }
   return (
     <Box>

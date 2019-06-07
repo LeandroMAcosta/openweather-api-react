@@ -55,7 +55,6 @@ class Home extends React.Component {
       uvi: jsonUvi,
     });
     console.log(jsonUvi);
-    
   }
 
   async updateWeather(newCity) {
@@ -113,9 +112,9 @@ class Home extends React.Component {
         </Box>
         { unMount
         && (
-        <Fade in={checked}>
+        <Fade in={checked} updateCoord={this.updateCoord}>
           <Card className="Home">
-            <Slide {...this.state} updateCoord={this.updateCoord} />
+            <Slide {...this.state} />
           </Card>
         </Fade>
         )
